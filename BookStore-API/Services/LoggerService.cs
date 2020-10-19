@@ -13,22 +13,22 @@ namespace BookStore_API.Services
 
         public void LogDebug(string message)
         {
-            logger.Debug(message);
+            logger.Debug("DEBUG " + message);
         }
 
         public void LogError(string message)
         {
-            logger.Error(message);
+            logger.Error("ERROR " + message);
         }
 
         public void LogInfo(string message)
         {
-            logger.Info(message);
+            logger.Info("INFO " + message);
         }
 
         public void LogWarn(string message)
         {
-            logger.Warn(message);
+            logger.Warn("WARN " + message);
         }
     }
 }
