@@ -1,0 +1,3 @@
+2020-10-21 21:11:38.7060  INFO Books - Create: Create Attempted
+2020-10-21 21:11:39.9388  INFO Books - Create: Creation was successful
+2020-10-21 21:11:39.9409  INFO Books - Create: BookStore_API.Data.Book
