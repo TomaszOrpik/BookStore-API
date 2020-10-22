@@ -7,6 +7,7 @@ using AutoMapper;
 using BookStore_API.Contracts;
 using BookStore_API.Data;
 using BookStore_API.DTOs;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
@@ -35,6 +36,7 @@ namespace BookStore_API.Controllers
         /// </summary>
         /// <returns>List of Authors</returns>
         [HttpGet]
+        [AllowAnonymous]
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status500InternalServerError)]
         public async Task<IActionResult> GetAuthors()
@@ -50,7 +52,7 @@ namespace BookStore_API.Controllers
             }
             catch (Exception e)
             {
-                return internalError($"{e.Message} - {e.InnerException}");
+                return InternalError($"{e.Message} - {e.InnerException}");
             }
         }
         /// <summary>
@@ -59,6 +61,7 @@ namespace BookStore_API.Controllers
         /// <param name="id"></param>
         /// <returns>Author's record</returns>
         [HttpGet("{id}")]
+        [AllowAnonymous]
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
         [ProducesResponseType(StatusCodes.Status500InternalServerError)]
@@ -82,7 +85,7 @@ namespace BookStore_API.Controllers
             }
             catch (Exception e)
             {
-                return internalError($"{e.Message} - {e.InnerException}");
+                return InternalError($"{e.Message} - {e.InnerException}");
             }
         }
         /// <summary>
@@ -91,8 +94,11 @@ namespace BookStore_API.Controllers
         /// <param name="author"></param>
         /// <returns></returns>
         [HttpPost]
+        [Authorize(Roles = "Administrator")]
         [ProducesResponseType(StatusCodes.Status201Created)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
+        [ProducesResponseType(StatusCodes.Status401Unauthorized)]
+        [ProducesResponseType(StatusCodes.Status403Forbidden)]
         [ProducesResponseType(StatusCodes.Status500InternalServerError)]
         public async Task<IActionResult> Create([FromBody] AuthorCreateDTO authorDTO)
         {
@@ -112,7 +118,7 @@ namespace BookStore_API.Controllers
                 }
                 var author = _mapper.Map<Author>(authorDTO);
                 var isSuccess = await _authorRepository.Create(author);
-                if (!isSuccess)  return internalError("Author creation failed");
+                if (!isSuccess)  return InternalError("Author creation failed");
 
                 _logger.LogInfo($"{location}: Author created");
                 _logger.LogInfo($"{location}: {author}");
@@ -121,7 +127,7 @@ namespace BookStore_API.Controllers
             }
             catch (Exception e)
             {
-                return internalError($"{e.Message} - {e.InnerException}");
+                return InternalError($"{e.Message} - {e.InnerException}");
             }
         }
         /// <summary>
@@ -131,8 +137,10 @@ namespace BookStore_API.Controllers
         /// <param name="authorDTO"></param>
         /// <returns></returns>
         [HttpPut("{id}")]
+        [Authorize(Roles = "Administrator, Customer")]
         [ProducesResponseType(StatusCodes.Status204NoContent)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
+        [ProducesResponseType(StatusCodes.Status401Unauthorized)]
         [ProducesResponseType(StatusCodes.Status500InternalServerError)]
         public async Task<IActionResult> Update(int id, [FromBody] AuthorUpdateDTO authorDTO)
         {
@@ -157,14 +165,14 @@ namespace BookStore_API.Controllers
                 }
                 var author = _mapper.Map<Author>(authorDTO);
                 var isSuccess = await _authorRepository.Update(author);
-                if (!isSuccess) return internalError("Update operation failed");
+                if (!isSuccess) return InternalError("Update operation failed");
 
                 _logger.LogInfo($"Author with id: {id} successfully updated");
                 return NoContent();
             }
             catch (Exception e)
             {
-                return internalError($"{e.Message} - {e.InnerException}");
+                return InternalError($"{e.Message} - {e.InnerException}");
             }
         }
         /// <summary>
@@ -173,8 +181,10 @@ namespace BookStore_API.Controllers
         /// <param name="id"></param>
         /// <returns></returns>
         [HttpDelete("{id}")]
+        [Authorize(Roles = "Customer")]
         [ProducesResponseType(StatusCodes.Status204NoContent)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
+        [ProducesResponseType(StatusCodes.Status401Unauthorized)]
         [ProducesResponseType(StatusCodes.Status500InternalServerError)]
         public async Task<IActionResult> Delete(int id)
         {
@@ -194,14 +204,14 @@ namespace BookStore_API.Controllers
                 }
                 var author = await _authorRepository.FindById(id);
                 var isSuccess = await _authorRepository.Delete(author);
-                if (!isSuccess) return internalError("Author delete failed");
+                if (!isSuccess) return InternalError("Author delete failed");
 
                 _logger.LogInfo($"Author with id: {id} successfully deleted");
                 return NoContent();
             }
             catch (Exception e)
             {
-                return internalError($"{e.Message} - {e.InnerException}");
+                return InternalError($"{e.Message} - {e.InnerException}");
             }
         }
 
@@ -212,7 +222,7 @@ namespace BookStore_API.Controllers
 
             return $"{controller} - {action}";
         }
-        private ObjectResult internalError(string message)
+        private ObjectResult InternalError(string message)
         {
             _logger.LogError(message);
             return StatusCode(500, "Something went wrong. Please contact the Administrator");

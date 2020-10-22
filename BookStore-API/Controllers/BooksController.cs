@@ -47,7 +47,7 @@ namespace BookStore_API.Controllers
             }
             catch (Exception e)
             {
-                return internalError($"{location}: {e.Message} - {e.InnerException}");
+                return InternalError($"{location}: {e.Message} - {e.InnerException}");
             }
         }
         /// <summary>
@@ -77,7 +77,7 @@ namespace BookStore_API.Controllers
             }
             catch (Exception e)
             {
-                return internalError($"{location}: {e.Message} - {e.InnerException}");
+                return InternalError($"{location}: {e.Message} - {e.InnerException}");
             }
         }
         /// <summary>
@@ -107,14 +107,14 @@ namespace BookStore_API.Controllers
                 }
                 var book = _mapper.Map<Book>(bookDTO);
                 var isSuccess = await _bookRepository.Create(book);
-                if (!isSuccess) return internalError($"{location}: Creation failed");
+                if (!isSuccess) return InternalError($"{location}: Creation failed");
                 _logger.LogInfo($"{location}: Creation was successful");
                 _logger.LogInfo($"{location}: {book}");
                 return Created("Create", new { book });
             }
             catch (Exception e)
             {
-                return internalError($"{location}: {e.Message} - {e.InnerException}");
+                return InternalError($"{location}: {e.Message} - {e.InnerException}");
             }
         }
         /// <summary>
@@ -151,14 +151,14 @@ namespace BookStore_API.Controllers
                 }
                 var book = _mapper.Map<Book>(bookDTO);
                 var isSuccess = await _bookRepository.Update(book);
-                if (!isSuccess) return internalError($"{location}: Update operation failed for record with id: {id}");
+                if (!isSuccess) return InternalError($"{location}: Update operation failed for record with id: {id}");
 
                 _logger.LogInfo($"{location}: Book with id: {id} successfully updated");
                 return NoContent();
             }
             catch (Exception e)
             {
-                return internalError($"{location}: {e.Message} - {e.InnerException}");
+                return InternalError($"{location}: {e.Message} - {e.InnerException}");
             }
         }
         /// <summary>
@@ -189,14 +189,14 @@ namespace BookStore_API.Controllers
                 }
                 var book = await _bookRepository.FindById(id);
                 var isSuccess = await _bookRepository.Delete(book);
-                if (!isSuccess) return internalError($"{location}: Book delete failed");
+                if (!isSuccess) return InternalError($"{location}: Book delete failed");
 
                 _logger.LogInfo($"{location}: Book with id: {id} successfully deleted");
                 return NoContent();
             }
             catch (Exception e)
             {
-                return internalError($"{location}: {e.Message} - {e.InnerException}");
+                return InternalError($"{location}: {e.Message} - {e.InnerException}");
             }
         }
         private string GetControllerActionNames()
@@ -207,7 +207,7 @@ namespace BookStore_API.Controllers
             return $"{controller} - {action}";
         }
 
-        private ObjectResult internalError(string message)
+        private ObjectResult InternalError(string message)
         {
             _logger.LogError(message);
             return StatusCode(500, "Something went wrong. Please contact the Administrator");

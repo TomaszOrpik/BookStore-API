@@ -1,0 +1,7 @@
+2020-10-22 18:36:52.5495  INFO Users - Login: Login Attempt from user Customer1
+2020-10-22 18:36:52.7803  INFO Users - Login: Customer1 Succesfullt Authenticated
+2020-10-22 18:50:43.8473  INFO Users - Login: Login Attempt from user admin
+2020-10-22 18:50:44.0632  INFO Users - Login: admin Succesfullt Authenticated
+2020-10-22 18:52:08.6649  INFO Author submission attempted
+2020-10-22 18:52:08.8934  INFO Authors - Create: Author created
+2020-10-22 18:52:08.8934  INFO Authors - Create: BookStore_API.Data.Author
