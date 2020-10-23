@@ -84,27 +84,16 @@
             <param name="id"></param>
             <returns></returns>
         </member>
-        <member name="T:BookStore_API.Controllers.HomeController">
+        <member name="M:BookStore_API.Controllers.UsersController.Register(BookStore_API.DTOs.UserDTO)">
             <summary>
-            This is a test API Controller
+            User register endpoint
             </summary>
-        </member>
-        <member name="M:BookStore_API.Controllers.HomeController.Get">
-            <summary>
-            Gets values
-            </summary>
-            <returns></returns>
-        </member>
-        <member name="M:BookStore_API.Controllers.HomeController.Get(System.Int32)">
-            <summary>
-            Gets a value
-            </summary>
-            <param name="id"></param>
+            <param name="userDTO"></param>
             <returns></returns>
         </member>
         <member name="M:BookStore_API.Controllers.UsersController.Login(BookStore_API.DTOs.UserDTO)">
             <summary>
-            User login Endpoint
+            User login endpoint
             </summary>
             <param name="userDTO"></param>
             <returns></returns>

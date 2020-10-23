@@ -1,0 +1,10 @@
+2020-10-23 16:25:53.3101  INFO Users - Register: Registration Attempt for user32@gmail.com
+2020-10-23 21:46:02.1853  INFO Users - Login: Login Attempt from user admin@bookstore.com
+2020-10-23 21:46:02.2574  INFO Users - Login: admin@bookstore.com Not Authenticated
+2020-10-23 21:46:05.0750  INFO Users - Login: Login Attempt from user admin@bookstore.com
+2020-10-23 21:46:05.0920  INFO Users - Login: admin@bookstore.com Not Authenticated
+2020-10-23 21:46:08.5449  INFO Users - Login: Login Attempt from user admin@bookstore.com
+2020-10-23 21:46:08.5449  INFO Users - Login: admin@bookstore.com Not Authenticated
+2020-10-23 21:46:37.2983  INFO Users - Register: Registration Attempt for testclient@bookstore.com
+2020-10-23 21:46:57.1666  INFO Users - Login: Login Attempt from user testclient@bookstore.com
+2020-10-23 21:46:57.2767  INFO Users - Login: testclient@bookstore.com Succesfullt Authenticated
