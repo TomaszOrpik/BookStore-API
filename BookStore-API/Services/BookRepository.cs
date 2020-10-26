@@ -11,7 +11,7 @@ namespace BookStore_API.Services
     public class BookRepository : IBookRepository
     {
         private readonly ApplicationDbContext _db;
-        
+
         public BookRepository(ApplicationDbContext db)
         {
             _db = db;
@@ -30,13 +30,17 @@ namespace BookStore_API.Services
 
         public async Task<IList<Book>> FindAll()
         {
-            var books = await _db.Books.ToListAsync();
+            var books = await _db.Books
+                .Include(q => q.Author)
+                .ToListAsync();
             return books;
         }
 
         public async Task<Book> FindById(int id)
         {
-            var book = await _db.Books.FindAsync(id);
+            var book = await _db.Books
+                .Include(q => q.Author)
+                .FirstOrDefaultAsync(q => q.Id == id);
             return book;
         }
 

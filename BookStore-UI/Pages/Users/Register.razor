@@ -1,5 +1,8 @@
 ﻿@page "/Register"
 
+@using BookStore_UI.Models
+@using BookStore_UI.Contracts
+
 @inject IAuthenticationRepository _authRepo
 @inject NavigationManager _navMan
 
@@ -7,7 +10,7 @@
 <h3 class="card-title">Register Now</h3>
 @if (!response)
 {
-    <ErrorMessage Message="Something went wrong with operation" />
+    <ErrorMessage Message="Something went wrong with the registration attempt"/>
 }
 <div class="card-body">
     <EditForm Model="Model" OnValidSubmit="HandleRegistration">

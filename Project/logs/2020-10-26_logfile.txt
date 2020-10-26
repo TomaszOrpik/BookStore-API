@@ -87,3 +87,37 @@
 2020-10-26 02:06:25.5322  INFO Authors - GetAuthors: Successful
 2020-10-26 02:07:21.6403  INFO Authors - GetAuthors: Attempted Call
 2020-10-26 02:07:21.7463  INFO Authors - GetAuthors: Successful
+2020-10-26 22:44:11.3824  INFO Users - Login: Login Attempt from user admin@bookstore.com
+2020-10-26 22:44:11.6548  INFO Users - Login: admin@bookstore.com Succesfullt Authenticated
+2020-10-26 22:44:13.8922  INFO Authors - GetAuthors: Attempted Call
+2020-10-26 22:44:14.2210  ERROR Unable to cast object of type 'System.Decimal' to type 'System.Double'. - 
+2020-10-26 22:44:23.8919  INFO Users - Login: Login Attempt from user admin@bookstore.com
+2020-10-26 22:44:23.9240  INFO Users - Login: admin@bookstore.com Succesfullt Authenticated
+2020-10-26 22:44:25.3055  INFO Authors - GetAuthors: Attempted Call
+2020-10-26 22:44:25.4949  ERROR Unable to cast object of type 'System.Decimal' to type 'System.Double'. - 
+2020-10-26 22:44:30.7435  INFO Books - GetBooks: Attempted Call
+2020-10-26 22:44:30.8766  ERROR Books - GetBooks: Unable to cast object of type 'System.Decimal' to type 'System.Double'. - 
+2020-10-26 22:44:35.3390  INFO Authors - GetAuthors: Attempted Call
+2020-10-26 22:44:35.4795  ERROR Unable to cast object of type 'System.Decimal' to type 'System.Double'. - 
+2020-10-26 22:45:04.5209  INFO Authors - GetAuthors: Attempted Call
+2020-10-26 22:45:04.6591  ERROR Unable to cast object of type 'System.Decimal' to type 'System.Double'. - 
+2020-10-26 22:45:05.7962  INFO Authors - GetAuthors: Attempted Call
+2020-10-26 22:45:05.9192  ERROR Unable to cast object of type 'System.Decimal' to type 'System.Double'. - 
+2020-10-26 22:45:17.1794  INFO Authors - GetAuthors: Attempted Call
+2020-10-26 22:45:17.3065  ERROR Unable to cast object of type 'System.Decimal' to type 'System.Double'. - 
+2020-10-26 22:45:33.2002  INFO Users - Login: Login Attempt from user admin@bookstore.com
+2020-10-26 22:45:33.2276  INFO Users - Login: admin@bookstore.com Succesfullt Authenticated
+2020-10-26 22:45:34.9781  INFO Authors - GetAuthors: Attempted Call
+2020-10-26 22:45:35.0871  ERROR Unable to cast object of type 'System.Decimal' to type 'System.Double'. - 
+2020-10-26 22:45:37.3412  INFO Books - GetBooks: Attempted Call
+2020-10-26 22:45:37.4453  ERROR Books - GetBooks: Unable to cast object of type 'System.Decimal' to type 'System.Double'. - 
+2020-10-26 22:45:38.6944  INFO Authors - GetAuthors: Attempted Call
+2020-10-26 22:45:38.8035  ERROR Unable to cast object of type 'System.Decimal' to type 'System.Double'. - 
+2020-10-26 22:45:47.3853  INFO Users - Login: Login Attempt from user testclient@bookstore.com
+2020-10-26 22:45:47.4177  INFO Users - Login: testclient@bookstore.com Succesfullt Authenticated
+2020-10-26 22:45:51.3551  INFO Books - GetBooks: Attempted Call
+2020-10-26 22:45:51.4558  ERROR Books - GetBooks: Unable to cast object of type 'System.Decimal' to type 'System.Double'. - 
+2020-10-26 22:46:13.7368  INFO Users - Login: Login Attempt from user admin@bookstore.com
+2020-10-26 22:46:13.7963  INFO Users - Login: admin@bookstore.com Succesfullt Authenticated
+2020-10-26 22:46:14.7903  INFO Authors - GetAuthors: Attempted Call
+2020-10-26 22:46:14.8887  ERROR Unable to cast object of type 'System.Decimal' to type 'System.Double'. - 

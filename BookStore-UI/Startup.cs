@@ -1,21 +1,22 @@
 using System;
 using System.Collections.Generic;
+using System.IdentityModel.Tokens.Jwt;
 using System.Linq;
 using System.Threading.Tasks;
+using Blazored.LocalStorage;
+using Blazored.Toast;
+using BookStore_UI.Contracts;
+using BookStore_UI.Providers;
+using BookStore_UI.Service;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Components;
+using Microsoft.AspNetCore.Components.Authorization;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
-using BookStore_UI.Data;
-using BookStore_UI.Contracts;
-using BookStore_UI.Service;
-using Blazored.LocalStorage;
-using System.IdentityModel.Tokens.Jwt;
-using BookStore_UI.Providers;
-using Microsoft.AspNetCore.Components.Authorization;
+
 
 namespace BookStore_UI
 {
@@ -35,13 +36,16 @@ namespace BookStore_UI
             services.AddRazorPages();
             services.AddServerSideBlazor();
             services.AddBlazoredLocalStorage();
+            services.AddBlazoredToast();
             services.AddHttpClient();
-            services.AddScoped<APIAuthenticationStateProvider>();
+            services.AddScoped<ApiAuthenticationStateProvider>();
             services.AddScoped<AuthenticationStateProvider>(p =>
-                p.GetRequiredService<APIAuthenticationStateProvider>());
+                p.GetRequiredService<ApiAuthenticationStateProvider>());
             services.AddScoped<JwtSecurityTokenHandler>();
             services.AddTransient<IAuthenticationRepository, AuthenticationRepository>();
             services.AddTransient<IAuthorRepository, AuthorRepository>();
+            services.AddTransient<IBookRepository, BookRepository>();
+            services.AddTransient<IFileUpload, FileUpload>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

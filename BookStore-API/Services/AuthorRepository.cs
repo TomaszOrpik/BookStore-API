@@ -11,6 +11,7 @@ namespace BookStore_API.Services
     public class AuthorRepository : IAuthorRepository
     {
         private readonly ApplicationDbContext _db;
+
         public AuthorRepository(ApplicationDbContext db)
         {
             _db = db;

@@ -45,8 +45,8 @@ namespace BookStore_API
                 .AddEntityFrameworkStores<ApplicationDbContext>();
 
             services.AddCors(o => {
-                o.AddPolicy("CorsPolicy", builder =>
-                    builder.AllowAnyOrigin()
+                o.AddPolicy("CorsPolicy",
+                    builder => builder.AllowAnyOrigin()
                     .AllowAnyMethod()
                     .AllowAnyHeader());
             });
@@ -64,15 +64,18 @@ namespace BookStore_API
                         ValidIssuer = Configuration["Jwt:Issuer"],
                         ValidAudience = Configuration["Jwt:Issuer"],
                         IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(Configuration["Jwt:Key"]))
+
                     };
                 });
 
             services.AddSwaggerGen(c => {
-                c.SwaggerDoc("v1", new OpenApiInfo { 
+                c.SwaggerDoc("v1", new OpenApiInfo 
+                { 
                     Title = "Book Store API",
-                    Description = "This is an educational API for Book Store",
-                    Version = "v1"
+                    Version = "v1",
+                    Description = "This is an educational API for a Book Store"
                 });
+
                 var xfile = $"{Assembly.GetExecutingAssembly().GetName().Name}.xml";
                 var xpath = Path.Combine(AppContext.BaseDirectory, xfile);
                 c.IncludeXmlComments(xpath);
@@ -83,11 +86,15 @@ namespace BookStore_API
             services.AddScoped<IBookRepository, BookRepository>();
 
             services.AddControllers().AddNewtonsoftJson(op => 
-                op.SerializerSettings.ReferenceLoopHandling = Newtonsoft.Json.ReferenceLoopHandling.Ignore);
+                op.SerializerSettings.ReferenceLoopHandling = 
+                    Newtonsoft.Json.ReferenceLoopHandling.Ignore);
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
-        public void Configure(IApplicationBuilder app, IWebHostEnvironment env, UserManager<IdentityUser> userManager, RoleManager<IdentityRole> roleManager)
+        public void Configure(IApplicationBuilder app, 
+            IWebHostEnvironment env,
+            UserManager<IdentityUser> userManager,
+            RoleManager<IdentityRole> roleManager)
         {
             if (env.IsDevelopment())
             {

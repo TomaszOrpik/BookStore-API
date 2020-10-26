@@ -1,5 +1,8 @@
 ﻿@page "/login"
 
+@using BookStore_UI.Models
+@using BookStore_UI.Contracts
+
 @inject IAuthenticationRepository _authRepo
 @inject NavigationManager _navManager
 
@@ -7,7 +10,7 @@
 <h3 class="card-title">Login</h3>
 @if (!response)
 {
-    <ErrorMessage Message="Something went wrong with the registration attempt" />
+    <ErrorMessage Message="Something went wrong with the login attempt" />
 }
 <div class="card-body">
     <EditForm Model="Model" OnValidSubmit="HandleLogin">
@@ -23,7 +26,8 @@
             <InputText Id="password" type="password" class="form-control" @bind-Value="Model.Password" />
             <ValidationMessage For="@(() => Model.Password)" />
         </div>
-        <button type="submit" class="btn btn-primary btn-block">Login</button>
+
+        <button type="submit" class="btn btn-primary btn-block">Login </button>
 
     </EditForm>
 </div>
@@ -31,8 +35,7 @@
 
 @code {
     private LoginModel Model = new LoginModel();
-    bool response = true;
-
+    private bool response = true;
     private async Task HandleLogin()
     {
         response = await _authRepo.Login(Model);
@@ -41,5 +44,6 @@
         {
             _navManager.NavigateTo("/");
         }
+
     }
 }

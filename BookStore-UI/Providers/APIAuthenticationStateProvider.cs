@@ -9,35 +9,38 @@ using System.Threading.Tasks;
 
 namespace BookStore_UI.Providers
 {
-    public class APIAuthenticationStateProvider : AuthenticationStateProvider
+    public class ApiAuthenticationStateProvider : AuthenticationStateProvider
     {
         private readonly ILocalStorageService _localStorage;
         private readonly JwtSecurityTokenHandler _tokenHandler;
-        public APIAuthenticationStateProvider(ILocalStorageService localStorage, JwtSecurityTokenHandler tokenHandler)
+        public ApiAuthenticationStateProvider(ILocalStorageService localStorage
+            , JwtSecurityTokenHandler tokenHandler)
         {
             _localStorage = localStorage;
             _tokenHandler = tokenHandler;
         }
+
         public async override Task<AuthenticationState> GetAuthenticationStateAsync()
         {
             try
             {
                 var savedToken = await _localStorage.GetItemAsync<string>("authToken");
-                if (string.IsNullOrWhiteSpace(savedToken)) return new AuthenticationState(new ClaimsPrincipal(new ClaimsIdentity()));
-
+                if (string.IsNullOrWhiteSpace(savedToken))
+                {
+                    return new AuthenticationState(new ClaimsPrincipal(new ClaimsIdentity()));
+                }
                 var tokenContent = _tokenHandler.ReadJwtToken(savedToken);
                 var expiry = tokenContent.ValidTo;
-                if (expiry < DateTime.Now)
+                if(expiry < DateTime.Now)
                 {
                     await _localStorage.RemoveItemAsync("authToken");
                     return new AuthenticationState(new ClaimsPrincipal(new ClaimsIdentity()));
                 }
 
-                //Get Claims from token & Build authenticated user object
+                //Get Claims from token and Build auth user object
                 var claims = ParseClaims(tokenContent);
                 var user = new ClaimsPrincipal(new ClaimsIdentity(claims, "jwt"));
-
-                //return authenticated person
+                //return authenticted person
                 return new AuthenticationState(user);
             }
             catch (Exception)

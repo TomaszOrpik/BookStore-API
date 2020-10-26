@@ -1,18 +1,18 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IdentityModel.Tokens.Jwt;
 using System.Linq;
+using System.Security.Claims;
+using System.Text;
 using System.Threading.Tasks;
-using Microsoft.Extensions.Configuration;
 using BookStore_API.Contracts;
 using BookStore_API.DTOs;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
-using System.Text;
+using Microsoft.Extensions.Configuration;
 using Microsoft.IdentityModel.Tokens;
-using System.Security.Claims;
-using System.IdentityModel.Tokens.Jwt;
 
 namespace BookStore_API.Controllers
 {
@@ -24,8 +24,10 @@ namespace BookStore_API.Controllers
         private readonly UserManager<IdentityUser> _userManager;
         private readonly ILoggerService _logger;
         private readonly IConfiguration _config;
-
-        public UsersController(SignInManager<IdentityUser> signInManager, UserManager<IdentityUser> userManager, ILoggerService logger, IConfiguration config)
+        public UsersController(SignInManager<IdentityUser> signInManager,
+            UserManager<IdentityUser> userManager,
+            ILoggerService logger,
+            IConfiguration config)
         {
             _signInManager = signInManager;
             _userManager = userManager;
@@ -33,13 +35,12 @@ namespace BookStore_API.Controllers
             _config = config;
         }
         /// <summary>
-        /// User register endpoint
+        /// USer Registration Endpoint
         /// </summary>
         /// <param name="userDTO"></param>
         /// <returns></returns>
         [Route("register")]
         [HttpPost]
-        [ProducesResponseType(StatusCodes.Status200OK)]
         public async Task<IActionResult> Register([FromBody] UserDTO userDTO)
         {
             var location = GetControllerActionNames();
@@ -47,21 +48,20 @@ namespace BookStore_API.Controllers
             {
                 var username = userDTO.EmailAddress;
                 var password = userDTO.Password;
-                _logger.LogInfo($"{location}: Registration Attempt for {username}");
-                var user = new IdentityUser
-                {
-                    Email = username,
-                    UserName = username
-                };
+                _logger.LogInfo($"{location}: Registration Attempt for {username} ");
+                var user = new IdentityUser { Email = username, UserName = username };
                 var result = await _userManager.CreateAsync(user, password);
 
                 if (!result.Succeeded)
                 {
-                    foreach (var error in result.Errors) _logger.LogError($"{location}: {error.Code} - {error.Description}");
-                    return InternalError($"{location}: {username} User Registration Attemp Failed");
+                    foreach(var error in result.Errors)
+                    {
+                        _logger.LogError($"{location}: {error.Code} {error.Description}");
+                    }
+                    return InternalError($"{location}: {username} User Registration Attempt Failed");
                 }
-
-                return Ok(new { result.Succeeded });
+                await _userManager.AddToRoleAsync(user, "Customer");
+                return Created("login",new { result.Succeeded });
             }
             catch (Exception e)
             {
@@ -69,15 +69,13 @@ namespace BookStore_API.Controllers
             }
         }
         /// <summary>
-        /// User login endpoint
+        /// User Login Endpoint
         /// </summary>
         /// <param name="userDTO"></param>
         /// <returns></returns>
         [Route("login")]
         [AllowAnonymous]
         [HttpPost]
-        [ProducesResponseType(StatusCodes.Status200OK)]
-        [ProducesResponseType(StatusCodes.Status401Unauthorized)]
         public async Task<IActionResult> Login([FromBody] UserDTO userDTO)
         {
             var location = GetControllerActionNames();
@@ -85,13 +83,14 @@ namespace BookStore_API.Controllers
             {
                 var username = userDTO.EmailAddress;
                 var password = userDTO.Password;
-                _logger.LogInfo($"{location}: Login Attempt from user {username}");
+                _logger.LogInfo($"{location}: Login Attempt from user {username} ");
                 var result = await _signInManager.PasswordSignInAsync(username, password, false, false);
 
                 if (result.Succeeded)
                 {
-                    _logger.LogInfo($"{location}: {username} Succesfullt Authenticated");
-                    var user = await _userManager.FindByNameAsync(username);
+                    _logger.LogInfo($"{location}: {username} Successfully Authenticated");
+                    var user = await _userManager.FindByEmailAsync(username);
+                    _logger.LogInfo($"{location}: Generating Token");
                     var tokenString = await GenerateJSONWebToken(user);
                     return Ok(new { token = tokenString });
                 }
@@ -117,14 +116,13 @@ namespace BookStore_API.Controllers
             var roles = await _userManager.GetRolesAsync(user);
             claims.AddRange(roles.Select(r => new Claim(ClaimsIdentity.DefaultRoleClaimType, r)));
 
-            var token = new JwtSecurityToken(
-                _config["Jwt:Issuer"],
-                _config["Jwt:Issuer"],
+            var token = new JwtSecurityToken(_config["Jwt:Issuer"]
+                , _config["Jwt:Issuer"],
                 claims,
                 null,
-                expires: DateTime.Now.AddHours(2),
+                expires: DateTime.Now.AddHours(5),
                 signingCredentials: credentials
-            ); 
+            );
             return new JwtSecurityTokenHandler().WriteToken(token);
         }
 
@@ -135,6 +133,7 @@ namespace BookStore_API.Controllers
 
             return $"{controller} - {action}";
         }
+
         private ObjectResult InternalError(string message)
         {
             _logger.LogError(message);

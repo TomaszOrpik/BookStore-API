@@ -1,5 +1,6 @@
 ﻿@page "/logout"
 
+@using BookStore_UI.Contracts
 @inject IAuthenticationRepository _authRepo
 @inject NavigationManager _navManager
 
@@ -9,4 +10,4 @@
         await _authRepo.Logout();
         _navManager.NavigateTo("/");
     }
-}   
+}
