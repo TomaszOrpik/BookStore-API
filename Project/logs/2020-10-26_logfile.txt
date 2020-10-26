@@ -1,0 +1,89 @@
+2020-10-26 01:21:32.2170  INFO Users - Login: Login Attempt from user admin@bookstore.com
+2020-10-26 01:21:32.4903  INFO Users - Login: admin@bookstore.com Succesfullt Authenticated
+2020-10-26 01:21:34.8682  INFO Authors - GetAuthors: Attempted Call
+2020-10-26 01:21:34.9508  INFO Authors - GetAuthors: Successful
+2020-10-26 01:21:37.4769  INFO Authors - GetAuthor: Attempted Call for id: 2
+2020-10-26 01:21:37.5166  INFO Authors - GetAuthor: Successfully got record with id: 2
+2020-10-26 01:21:38.6569  INFO Author with id: 2 Delete Attempted
+2020-10-26 01:21:38.8059  INFO Author with id: 2 successfully deleted
+2020-10-26 01:21:38.8564  INFO Authors - GetAuthors: Attempted Call
+2020-10-26 01:21:38.8607  INFO Authors - GetAuthors: Successful
+2020-10-26 01:22:20.1182  INFO Authors - GetAuthors: Attempted Call
+2020-10-26 01:22:20.1263  INFO Authors - GetAuthors: Successful
+2020-10-26 01:22:22.7602  INFO Authors - GetAuthor: Attempted Call for id: 1
+2020-10-26 01:22:22.7693  INFO Authors - GetAuthor: Successfully got record with id: 1
+2020-10-26 01:22:24.5904  INFO Authors - GetAuthors: Attempted Call
+2020-10-26 01:22:24.5988  INFO Authors - GetAuthors: Successful
+2020-10-26 01:22:25.4271  INFO Authors - GetAuthor: Attempted Call for id: 1
+2020-10-26 01:22:25.4348  INFO Authors - GetAuthor: Successfully got record with id: 1
+2020-10-26 01:22:28.3687  INFO Author update Attempted - id: 1
+2020-10-26 01:22:28.3979  INFO Author with id: 1 successfully updated
+2020-10-26 01:22:28.4379  INFO Authors - GetAuthors: Attempted Call
+2020-10-26 01:22:28.4379  INFO Authors - GetAuthors: Successful
+2020-10-26 01:23:52.9830  INFO Authors - GetAuthors: Attempted Call
+2020-10-26 01:23:53.1485  INFO Authors - GetAuthors: Successful
+2020-10-26 01:24:54.4595  INFO Authors - GetAuthors: Attempted Call
+2020-10-26 01:24:54.4733  INFO Authors - GetAuthors: Successful
+2020-10-26 01:30:25.3567  INFO Users - Login: Login Attempt from user admin@bookstore.com
+2020-10-26 01:30:25.5538  INFO Users - Login: admin@bookstore.com Succesfullt Authenticated
+2020-10-26 01:30:52.1345  INFO Author submission attempted
+2020-10-26 01:30:52.3327  INFO Authors - Create: Author created
+2020-10-26 01:30:52.3327  INFO Authors - Create: BookStore_API.Data.Author
+2020-10-26 01:31:05.6539  INFO Authors - GetAuthors: Attempted Call
+2020-10-26 01:31:05.6963  INFO Authors - GetAuthors: Successful
+2020-10-26 01:32:19.8265  INFO Authors - GetAuthors: Attempted Call
+2020-10-26 01:32:19.9577  INFO Authors - GetAuthors: Successful
+2020-10-26 01:32:42.7773  INFO Authors - GetAuthors: Attempted Call
+2020-10-26 01:32:42.7919  INFO Authors - GetAuthors: Successful
+2020-10-26 01:34:06.5291  INFO Authors - GetAuthors: Attempted Call
+2020-10-26 01:34:06.6443  INFO Authors - GetAuthors: Successful
+2020-10-26 01:36:20.3735  INFO Authors - GetAuthors: Attempted Call
+2020-10-26 01:36:20.5076  INFO Authors - GetAuthors: Successful
+2020-10-26 01:36:46.6700  INFO Authors - GetAuthors: Attempted Call
+2020-10-26 01:36:46.7822  INFO Authors - GetAuthors: Successful
+2020-10-26 01:40:34.0772  INFO Authors - GetAuthors: Attempted Call
+2020-10-26 01:40:34.2009  INFO Authors - GetAuthors: Successful
+2020-10-26 01:41:23.8101  INFO Authors - GetAuthors: Attempted Call
+2020-10-26 01:41:23.9375  INFO Authors - GetAuthors: Successful
+2020-10-26 01:42:58.8121  INFO Authors - GetAuthors: Attempted Call
+2020-10-26 01:42:58.9444  INFO Authors - GetAuthors: Successful
+2020-10-26 01:46:52.5285  INFO Authors - GetAuthors: Attempted Call
+2020-10-26 01:46:52.6738  INFO Authors - GetAuthors: Successful
+2020-10-26 01:50:03.8569  INFO Authors - GetAuthors: Attempted Call
+2020-10-26 01:50:03.9856  INFO Authors - GetAuthors: Successful
+2020-10-26 01:50:25.8252  INFO Authors - GetAuthors: Attempted Call
+2020-10-26 01:50:25.9490  INFO Authors - GetAuthors: Successful
+2020-10-26 01:51:15.0130  INFO Authors - GetAuthors: Attempted Call
+2020-10-26 01:51:15.1257  INFO Authors - GetAuthors: Successful
+2020-10-26 01:51:18.2471  INFO Authors - GetAuthor: Attempted Call for id: 4
+2020-10-26 01:51:18.2984  INFO Authors - GetAuthor: Successfully got record with id: 4
+2020-10-26 01:52:01.6530  INFO Author with id: 4 Delete Attempted
+2020-10-26 01:52:01.8289  INFO Author with id: 4 successfully deleted
+2020-10-26 01:52:01.8795  INFO Authors - GetAuthors: Attempted Call
+2020-10-26 01:52:01.8795  INFO Authors - GetAuthors: Successful
+2020-10-26 01:52:41.8777  INFO Authors - GetAuthors: Attempted Call
+2020-10-26 01:52:41.9068  INFO Authors - GetAuthors: Successful
+2020-10-26 01:55:00.9513  INFO Authors - GetAuthors: Attempted Call
+2020-10-26 01:55:01.0935  INFO Authors - GetAuthors: Successful
+2020-10-26 01:55:16.0055  INFO Authors - GetAuthors: Attempted Call
+2020-10-26 01:55:16.0181  INFO Authors - GetAuthors: Successful
+2020-10-26 01:55:53.0449  INFO Authors - GetAuthors: Attempted Call
+2020-10-26 01:55:53.1613  INFO Authors - GetAuthors: Successful
+2020-10-26 01:57:29.2458  INFO Authors - GetAuthors: Attempted Call
+2020-10-26 01:57:29.2587  INFO Authors - GetAuthors: Successful
+2020-10-26 01:57:48.9445  INFO Authors - GetAuthor: Attempted Call for id: 1
+2020-10-26 01:57:48.9824  INFO Authors - GetAuthor: Successfully got record with id: 1
+2020-10-26 01:58:14.4873  INFO Authors - GetAuthors: Attempted Call
+2020-10-26 01:58:14.5219  INFO Authors - GetAuthors: Successful
+2020-10-26 02:01:04.6382  INFO Authors - GetAuthors: Attempted Call
+2020-10-26 02:01:04.7682  INFO Authors - GetAuthors: Successful
+2020-10-26 02:02:14.0616  INFO Authors - GetAuthors: Attempted Call
+2020-10-26 02:02:14.1846  INFO Authors - GetAuthors: Successful
+2020-10-26 02:03:15.6690  INFO Authors - GetAuthors: Attempted Call
+2020-10-26 02:03:15.8126  INFO Authors - GetAuthors: Successful
+2020-10-26 02:04:53.2643  INFO Authors - GetAuthors: Attempted Call
+2020-10-26 02:04:53.3807  INFO Authors - GetAuthors: Successful
+2020-10-26 02:06:25.3879  INFO Authors - GetAuthors: Attempted Call
+2020-10-26 02:06:25.5322  INFO Authors - GetAuthors: Successful
+2020-10-26 02:07:21.6403  INFO Authors - GetAuthors: Attempted Call
+2020-10-26 02:07:21.7463  INFO Authors - GetAuthors: Successful

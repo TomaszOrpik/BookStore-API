@@ -1,0 +1,59 @@
+﻿@page "/authors/create/"
+@attribute [Authorize(Roles = "Administrator")]
+@inject IAuthorRepository _repo
+@inject NavigationManager _navManager
+
+<h3 class="card-title">Create New Author</h3>
+<br/>
+<hr />
+<br/>
+
+@if (!isSuccess)
+{
+    <ErrorMessage Message="Something went wrong with operation" />
+}
+
+@testMessage
+
+<EditForm Model="Model" OnValidSubmit="CreateAuthor">
+    <DataAnnotationsValidator />
+    <ValidationSummary />
+    <div class="form-group">
+        <label for="firstname">First Name</label>
+        <InputText id="firstname" @bind-Value="Model.Firstname" class="form-control" />
+    </div>
+    <div class="form-group">
+        <label for="lastname">Last Name</label>
+        <InputText id="lastname" @bind-Value="Model.Lastname" class="form-control" />
+    </div>
+    <div class="form-group">
+        <label for="bio">Biography</label>
+        <InputText id="bio" @bind-Value="Model.Bio" class="form-control" />
+    </div>
+    <button class="btn btn-primary" type="submit">
+        <span class="oi oi-pencil"></span> Create Author
+    </button>
+    <button class="btn btn-outline-secondary" @onclick="BackToList">
+        <span class="oi oi-media-skip-backward"></span> Back To List
+    </button>
+</EditForm>
+
+@code {
+    private Author Model = new Author();
+    private bool isSuccess = true;
+
+    private string testMessage;
+
+    private async Task CreateAuthor()
+    {
+        testMessage = _repo.Create(Static.Endpoints.AuthorsEndpoint, Model).Result.ToString();
+        
+        var isSuccess = await _repo.Create(Static.Endpoints.AuthorsEndpoint, Model);
+        if (isSuccess) BackToList();
+    }
+
+    private void BackToList()
+    {
+        _navManager.NavigateTo("/authors/");
+    }
+}
